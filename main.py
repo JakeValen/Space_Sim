@@ -13,8 +13,10 @@ def create_screen(width,height):
     return screen_init
 
 #This function allows for easy creating of buttons
-def button(position,text):
-    pass
+def button(screen,position,text):
+    font = p.font.SysFont("Times New Roman", 50)
+    text_renderer = font.render(text,True,(255,255,255))
+    p.draw.rect()
 
 
 
@@ -25,8 +27,8 @@ while running:
 
     mouse = p.mouse.get_pos()
     #Initialize the screen
-    screen = create_screen(750,750)
-    screen.fill((0,0,0))
+    game_screen = create_screen(750,750)
+    game_screen.fill((0,0,0))
     p.display.flip()
 
     #Searchiong through events to set certain conditions
