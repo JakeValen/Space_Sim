@@ -22,8 +22,8 @@ class Planet:
 
 #Button class
 class Button:
-    def __init__(self,screen,position,width,height,on_click_function,one_press,button_list,text=''):
-        #Here all of the basic attributes are set
+    def __init__(self,screen,position,width,height,button_list,on_click_function=None,one_press=False,text=''):
+        #Here all the basic attributes are set
         self.x, self.y = position
         self.font = p.font.SysFont("Times New Roman", 30)
         self.width = width
@@ -32,6 +32,7 @@ class Button:
         self.on_click_function = on_click_function
         self.one_press = one_press
         self.screen = screen
+        self.already_pressed = False
         #These colors are what will fill the button on its certain states
         self.fillColors = {
             'normal':'#ffffff',
@@ -50,10 +51,18 @@ class Button:
         self.buttonSurface.fill(self.fillColors['normal'])
         if self.buttonRect.collidepoint(mouse_pos):
             self.buttonSurface.fill(self.fillColors['hover'])
-            if p.mouse.get_pressed(num_buttons=3)[0] == 1:
+            if p.mouse.get_pressed(num_buttons=3)[0] == 1 and not self.one_press:
                 self.buttonSurface.fill(self.fillColors['pressed'])
                 if self.one_press:
                     self.on_click_function()
+                elif not self.already_pressed:
+                    self.on_click_function()
+                    self.already_pressed = True
+            else:
+                self.already_pressed = False
+
+
+
 
         self.buttonSurface.blit(self.buttonSurf, [
             self.buttonRect.width/2 - self.buttonSurface.get_rect().width/2,

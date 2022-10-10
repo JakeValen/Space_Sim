@@ -23,7 +23,7 @@ while running:
     #Initialize the screen
     game_screen = create_screen(750,750)
     game_screen.fill((0,0,0))
-    button1 = s.Button(game_screen,(30,30),100,50,button_pressed(),True,buttons,"Press Me")
+    button1 = s.Button(game_screen,(30,30),115,40,buttons,button_pressed,one_press=True,text="Press Me")
 
     #Searchiong through events to set certain conditions
     for event in p.event.get():
