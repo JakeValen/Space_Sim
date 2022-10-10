@@ -51,7 +51,7 @@ class Button:
         self.buttonSurface.fill(self.fillColors['normal'])
         if self.buttonRect.collidepoint(mouse_pos):
             self.buttonSurface.fill(self.fillColors['hover'])
-            if p.mouse.get_pressed(num_buttons=3)[0] == 1 and not self.one_press:
+            if p.mouse.get_pressed(num_buttons=3)[0]:
                 self.buttonSurface.fill(self.fillColors['pressed'])
                 if self.one_press:
                     self.on_click_function()
