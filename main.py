@@ -5,21 +5,15 @@ import random as r
 import simclasses as s
 import sys
 p.init()
-
+buttons = []
 #This function creates a screen for the simulation to use.
 def create_screen(width,height):
     screen_init = p.display.set_mode(size=(width,height))
     p.display.set_caption("Space Simulator")
     return screen_init
 
-#This function allows for easy creating of buttons
-def button(screen,position,text):
-    font = p.font.SysFont("Times New Roman", 50)
-    text_renderer = font.render(text,True,(255,255,255))
-    p.draw.rect()
-
-
-
+def button_pressed():
+    print("Button Pressed")
 
 #Here is where the simulation is run
 running = True
@@ -29,12 +23,16 @@ while running:
     #Initialize the screen
     game_screen = create_screen(750,750)
     game_screen.fill((0,0,0))
-    p.display.flip()
+    button1 = s.Button(game_screen,(30,30),100,50,button_pressed(),True,buttons,"Press Me")
 
     #Searchiong through events to set certain conditions
     for event in p.event.get():
         if event.type == p.QUIT: #If the x is hit on the screen, quit the program.
             running = False
 
+    #Searching through the objects to see if they are being executed
+    for obj in buttons:
+        obj.process()
 
+    p.display.flip()
 
