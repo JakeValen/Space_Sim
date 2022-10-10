@@ -12,6 +12,7 @@ def create_screen(width,height):
     p.display.set_caption("Space Simulator")
     return screen_init
 
+#This function allows for easy creating of buttons
 def button(position,text):
     pass
 
