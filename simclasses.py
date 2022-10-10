@@ -54,6 +54,7 @@ class Button:
                 self.buttonSurface.fill(self.fillColors['pressed'])
                 if self.one_press:
                     self.on_click_function()
+
         self.buttonSurface.blit(self.buttonSurf, [
             self.buttonRect.width/2 - self.buttonSurface.get_rect().width/2,
             self.buttonRect.height/2 - self.buttonSurface.get_rect().height/2
