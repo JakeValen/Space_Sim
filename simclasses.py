@@ -2,6 +2,7 @@
 #Star class should have defining parameters passed in to be set as attributes
 import pygame as p
 import sys
+pressed = False
 
 class Star:
     #The initialization of the star should set the mass and the color of the star.
@@ -47,20 +48,20 @@ class Button:
 
         #This process checks to see what state the button is in
     def process(self):
+        global pressed
         mouse_pos = p.mouse.get_pos()
         self.buttonSurface.fill(self.fillColors['normal'])
         if self.buttonRect.collidepoint(mouse_pos):
             self.buttonSurface.fill(self.fillColors['hover'])
             if p.mouse.get_pressed(num_buttons=3)[0]:
                 self.buttonSurface.fill(self.fillColors['pressed'])
+                #Need to come up with a solution to make it so the button only scans for a single cycle
                 if self.one_press:
+                    while not pressed:
+                        self.on_click_function()
+                        pressed = True
+                else:
                     self.on_click_function()
-                elif not self.already_pressed:
-                    self.on_click_function()
-                    self.already_pressed = True
-            else:
-                self.already_pressed = False
-
 
 
 
