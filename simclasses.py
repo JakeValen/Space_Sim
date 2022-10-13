@@ -6,13 +6,27 @@ pressed = False
 
 class Star:
     #The initialization of the star should set the mass and the color of the star.
-    def __init__(self,mass,color):
+    def __init__(self,screen,mass=0,color="#000000",center=(750/2,750/2),radius=0):
         self.mass = mass
         self.color = color
+        self.center = center
+        self.radius = radius
+        self.screen = screen
+
+    #This function will prompt the user to input star attributes
+    def get_star_attributes(self):
+        self.mass = int(input("Enter the mass in kg: "))
+        self.color = input("Enter the color in hex: ")
+        self.center = (750/2,750/2)
+        self.radius = int(input("Enter the radius in Km: "))
 
     #The create function should draw the star on the screen
     def create(self):
-        pass
+        """
+        This will create a star at the center of the window.
+        :return:
+        """
+        p.draw.circle(self.screen, self.color, self.center, self.radius)
 
 #Planet class
 class Planet:
@@ -26,7 +40,7 @@ class Button:
     def __init__(self,screen,position,width,height,button_list,on_click_function=None,one_press=False,text=''):
         #Here all the basic attributes are set
         self.x, self.y = position
-        self.font = p.font.SysFont("Times New Roman", 30)
+        self.font = p.font.SysFont("OCR A Extended", 30)
         self.width = width
         self.height = height
         self.text = text
@@ -36,9 +50,9 @@ class Button:
         self.already_pressed = False
         #These colors are what will fill the button on its certain states
         self.fillColors = {
-            'normal':'#ffffff',
-            'hover':'#666666',
-            'pressed':'#333333'
+            'normal':'#fff7fd',
+            'hover':'#d9cbe1',
+            'pressed':'#4c3d53'
         }
         #This initializes the surface of the buttons
         self.buttonSurface = p.Surface((self.width, self.height))
