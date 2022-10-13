@@ -1,5 +1,4 @@
 #Star class
-#Star class should have defining parameters passed in to be set as attributes
 import pygame as p
 import sys
 pressed = False
@@ -7,11 +6,11 @@ pressed = False
 class Star:
     #The initialization of the star should set the mass and the color of the star.
     def __init__(self,screen,mass=0,color="#000000",center=(750/2,750/2),radius=0):
+        self.screen = screen
         self.mass = mass
         self.color = color
         self.center = center
         self.radius = radius
-        self.screen = screen
 
     #This function will prompt the user to input star attributes
     def get_star_attributes(self):
@@ -27,6 +26,7 @@ class Star:
         :return:
         """
         p.draw.circle(self.screen, self.color, self.center, self.radius)
+        p.display.update()
 
 #Planet class
 class Planet:
