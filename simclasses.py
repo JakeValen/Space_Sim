@@ -2,6 +2,7 @@
 import pygame as p
 import sys
 pressed = False
+mouse_loc = (0,0)
 
 class Star:
     #The initialization of the star should set the mass and the color of the star.
@@ -30,10 +31,27 @@ class Star:
 
 #Planet class
 class Planet:
-    def __init__(self,mass,color,path):
+    def __init__(self,screen,mass=0,color="#000000",radius=0):
+        global mouse_loc
+        self.screen = screen
         self.mass = mass
         self.color = color
+        self.radius = radius
+        self.center = mouse_loc
         pass
+
+    def get_planet_attribute(self):
+        global mouse_loc
+        self.mass = int(input("Enter the mass in kg: "))
+        self.color = input("Enter the color in hex: ")
+        self.radius = int(input("Enter the radius in Km: "))
+        print("Click the location of the planet..")
+        while mouse_loc == (0,0): #Trying to add a planet at cursor location when clicked, this is not working yet.
+            if p.mouse.get_pressed(3)[0] == 1:
+                mouse_loc = p.mouse.get_pos()
+
+    def create(self):
+        p.draw.circle(self.screen, self.color, self.center, self.radius)
 
 #Button class
 class Button:

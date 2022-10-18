@@ -21,6 +21,11 @@ def add_star():
     new_star.get_star_attributes()
     new_star.create()
 
+def add_planet():
+    new_planet = s.Planet(game_screen)
+    new_planet.get_planet_attribute()
+    new_planet.create()
+
 
 
 #Here is where the simulation is run
@@ -35,14 +40,16 @@ running = True
 while running:
     mouse = p.mouse.get_pos()
     button1 = s.Button(game_screen,(10,600), 150, 30, button_list=buttons, on_click_function=add_star,one_press=True, text="Add Star")
-    button2 = s.Button(game_screen,(10,650), 185, 30, button_list=buttons, on_click_function=button_pressed,one_press=True, text="Add Planet")
-    button3 = s.Button(game_screen,(10,700), 75, 30,button_list=buttons,on_click_function=quit,one_press=True,text="Quit")
+    button2 = s.Button(game_screen,(10,650), 185, 30, button_list=buttons, on_click_function=add_planet,one_press=True, text="Add Planet")
+    button3 = s.Button(game_screen,(10,700), 75, 30,button_list=buttons, on_click_function=quit,one_press=True,text="Quit")
     #Searchiong through events to set certain conditions
     for event in p.event.get():
         if event.type == p.QUIT: #If the x is hit on the screen, quit the program.
             running = False
         if event.type == p.MOUSEBUTTONUP:
             s.pressed = False
+        if event.type == p.MOUSEBUTTONDOWN:
+            pass
 
     #Searching through the objects to see if they are being executed
     for obj in buttons:
